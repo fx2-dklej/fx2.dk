@@ -13,7 +13,7 @@
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<Version>0.1.12</Version>
 		<PackageId>LoggerDK</PackageId>
-		<PackageIcon>log-icon.png</PackageIcon>
+		<PackageIcon></PackageIcon>
 		<RepositoryUrl>https://github.com/fx2-dklej/fx2.dk</RepositoryUrl>
 		<PackageOutputPath>Z:\Package source</PackageOutputPath>
 	</PropertyGroup>
