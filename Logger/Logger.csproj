@@ -11,11 +11,11 @@
 		<PackageReadmeFile>readme.md</PackageReadmeFile>
 		<PackageTags>log;logger;fx2;dk</PackageTags>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-		<Version>0.1.12</Version>
+		<Version>0.1.1</Version>
 		<PackageId>LoggerDK</PackageId>
 		<PackageIcon></PackageIcon>
 		<RepositoryUrl>https://github.com/fx2-dklej/fx2.dk</RepositoryUrl>
-		<PackageOutputPath>Z:\Package source</PackageOutputPath>
+		<PackageOutputPath>Z:\Package source (FX2 NuGet)</PackageOutputPath>
 	</PropertyGroup>
 
 	<ItemGroup>

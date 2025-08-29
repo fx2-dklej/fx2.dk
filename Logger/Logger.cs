@@ -1,4 +1,7 @@
-﻿namespace LoggerDK
+﻿using System.Reflection.Emit;
+using System.Text.Json;
+
+namespace LoggerDK
 {
     public class Logger
     {
@@ -45,14 +48,13 @@
             return true;
         }
 
-
         /// <summary>
         /// Add frame with custom message to log file
         /// </summary>
         public void AddFrame(string title)
         {
             UpdatePath();
-            string titleLine = $"== {title} ==";
+            string titleLine = $"============ {title} ============";
             string border = new string('=', titleLine.Length);
             try
             {
@@ -60,7 +62,7 @@
                 {
                     writer.WriteLine(border);
                     writer.WriteLine(titleLine);
-                    writer.WriteLine(border);
+                    //writer.WriteLine(border);
                 }
             }
             catch { AddEmergencyMessage(title); }
@@ -81,6 +83,41 @@
                 }
             }
             catch { AddEmergencyMessage(message); }
+        }
+
+        /// <summary>
+        /// Outputs the object to the log in JSON format. You can choose JSON styling (single line or natively formatted).
+        /// </summary>
+        public void AddObject<T>(T obj, bool prettyStyle = false)
+        {
+            UpdatePath();
+            string json = string.Empty;
+            try
+            {
+                var option = new JsonSerializerOptions { WriteIndented = prettyStyle, Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping };
+                json = JsonSerializer.Serialize(obj, option);
+                using (StreamWriter writer = new StreamWriter(_path, true, System.Text.Encoding.UTF8))
+                {
+                    writer.WriteLine(string.Format("{0,-15}", TimeNow()) + json);
+                }
+            }
+            catch { AddEmergencyMessage(json); }
+        }
+
+        /// <summary>
+        /// Add empty line to log file
+        /// </summary>
+        public void AddEmptyLine()
+        {
+            UpdatePath();
+            try
+            {
+                using (StreamWriter writer = new StreamWriter(_path, true, System.Text.Encoding.UTF8))
+                {
+                    writer.WriteLine("");
+                }
+            }
+            catch { }
         }
 
         private void AddEmergencyMessage(string message)

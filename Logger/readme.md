@@ -1,48 +1,94 @@
 ﻿# 📝Looger 
 
-A simple and flexible logger for text and CSV files.  
-It automatically creates log directories and files, appends messages, and supports a fallback mode (saving logs in the application directory if the target location is unavailable).
+Prosty i elastyczne narzędzie do zapisywania logów w formie plików tekstowych.
+Automatycznie tworzy katalogi i inicjuje pliki logów. Obsługuje tryb awaryjny (zapisuje logi w katalogu aplikacji, jeśli lokalizcja docelowa jest niedostępna z poziomu aplikacji). 
 
 ---
 
-## ✨ Features
-- Automatic creation of log files (TXT/CSV)  
-- Date-based filenames (`YYYY-MM-DD`)  
-- Section frames with `AddFrame`  
-- Timestamped messages with `AddMessage`  
-- <b>Emergency mode</b> – if the target path is not available, logs are saved in the application’s base directory  
+## 📌 Features
+- Automatyczne tworzenie logów (TXT/CSV) 
+- Kodowanie UTF-8 
+- Oddzielenie sekcji w logu `AddFrame`  
+- Datowanie wiadomości `AddMessage`  
+- Obsługa wypisywania do pliku dowolnych obiektów w formacie JSON (wymagane publiczne właściwości) `AddObject`  
+- <b>Tryb bezpieczeństwa</b> – jeśli ścieżka docelowa nie jest dostępna, logi są zapisywane w katalogu bazowym aplikacji `EmergencyPath`
 
 ---
 
-## 🛠️ Usage
+## 🛠️ Użycie
 
-### 1. Create a logger
+### 1. Tworzenie logu
 ```csharp
 using Logger;
 
-// default is TXT
+// domyślnie .txt
 var logger = new Logger.Logger(@"C:\Logs", "AppLog");
 
-// explicitly specify CSV format
+// wybranie alternatywnego formatu .csv
 var loggerCsv = new Logger.Logger(@"C:\Logs", "AppLog", FileType.CSV);
 
-// initialize the log file
+// inicjalizacja folderu i pliku logu
 logger.InitLog();
 ```    
 
-### 2. Add log entries
+### 2. Przykład użycia i rezultaty
 
-```
+---
+
+```csharp
 logger.AddFrame("INIT LOGGER"); 
-// output:
-// =================
-// == INIT LOGGER ==
-// =================
 ```
 
+`output:`
+
+```txt
+// =========================
+// ====== INIT LOGGER ======
 ```
+
+---
+
+```csharp
 logger.AddMessage("Application started");
-// output: "12:34:56    Application started"
+```
+
+`output:`
+
+```txt
+12:34:56    Application started
+```
+
+---
+
+```csharp
+logger.AddObject(obj);
+```
+
+`output:`
+
+```txt
+12:34:56    {"integer":2137,"imie":"Jan","nazwisko":"Kowalski","adres":{"kod":"15-399","miejscowosc":"Białystok"}}
+```
+
+---
+
+Pretty style ☕
+```csharp
+logger.AddObject(obj);
+```
+
+`output:`
+
+```
+12:54:19       {
+  "integer": 2137,
+  "imie": "Jan",
+  "nazwisko": "Kowalski",
+  "adres": {
+    "kod": "15-399",
+    "miejscowosc": "Białystok"
+  }
+}
 ```
 
 ---
@@ -51,27 +97,14 @@ logger.AddMessage("Application started");
 
 Logs are stored in the format
 
-```
-{DirectoryPath}\{FileName} {YYYY-MM-DD}.{txt|csv}
-```
+`{DirectoryPath}\{FileName} {YYYY-MM-DD}.{txt|csv}`
 
 Example:
 
-```C:\Logs\AppLog 2025-08-27.txt```
+`C:\Logs\AppLog 2025-08-27.txt`
 
 ---
 
-## 📖 Example log output
-
-```
-=============================
-== INIT LOGGER APPLICATION ==
-=============================
-12:30:05    Application started
-12:30:07    Database connected
-12:30:10    User logged in
-12:45:22    Application stopped
-```
 
 ## Authors
 
