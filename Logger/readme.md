@@ -1,11 +1,11 @@
 ﻿# 📝Looger 
 
-Prosty i elastyczne narzędzie do zapisywania logów w formie plików tekstowych.
+Proste i elastyczne narzędzie do zapisywania logów w formie plików tekstowych.
 Automatycznie tworzy katalogi i inicjuje pliki logów. Obsługuje tryb awaryjny (zapisuje logi w katalogu aplikacji, jeśli lokalizcja docelowa jest niedostępna z poziomu aplikacji). 
 
 ---
 
-## 📌 Features
+## 📌 Właściwości narzędzia
 - Automatyczne tworzenie logów (TXT/CSV) 
 - Kodowanie UTF-8 
 - Oddzielenie sekcji w logu `AddFrame`  
@@ -93,19 +93,19 @@ logger.AddObject(obj);
 
 ---
 
-## 📂 File structure
+## 📂 Struktura nazwy pliku
 
-Logs are stored in the format
+Pliki przechowywane są w formacie:
 
 `{DirectoryPath}\{FileName} {YYYY-MM-DD}.{txt|csv}`
 
-Example:
+Przykład:
 
 `C:\Logs\AppLog 2025-08-27.txt`
 
 ---
 
 
-## Authors
+## Autorzy
 
 [fx2-dklej](https://github.com/fx2-dklej)
