@@ -74,7 +74,7 @@ logger.AddObject(obj);
 
 Pretty style ☕
 ```csharp
-logger.AddObject(obj);
+logger.AddObject(obj, true);
 ```
 
 `output:`
