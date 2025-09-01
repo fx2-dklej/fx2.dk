@@ -19,7 +19,7 @@ Automatycznie tworzy katalogi i inicjuje pliki logów. Obsługuje tryb awaryjny 
 
 ### 1. Tworzenie logu
 ```csharp
-using Logger;
+using LoggerDK;
 
 // domyślnie .txt
 var logger = new Logger.Logger(@"C:\Logs", "AppLog");
